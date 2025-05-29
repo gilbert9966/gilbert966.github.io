@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioGlow Labs - Iluminación Química Sostenible</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2ecc71;
+            --secondary: #1abc9c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: #f1c40f;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .nav-links a:hover {
+            border-bottom: 2px solid white;
+        }
+        
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1513828583688-c52646db42da?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .mission-vision {
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .mv-container {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .mv-box {
+            flex: 1;
+            background-color: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .mv-box:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .mv-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .mv-box i {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .products {
+            background-color: #f9f9f9;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-info p {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+        
+        .product-info .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .customizer {
+            background-color: white;
+        }
+        
+        .customizer-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .customizer-preview {
+            flex: 1;
+            position: relative;
+            height: 400px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .lamp-base {
+            width: 120px;
+            height: 20px;
+            background-color: #333;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 50px;
+            z-index: 2;
+        }
+        
+        .lamp-stem {
+            width: 20px;
+            height: 100px;
+            background-color: #555;
+            position: absolute;
+            bottom: 70px;
+            z-index: 2;
+        }
+        
+        .lamp-bag {
+            width: 150px;
+            height: 200px;
+            border-radius: 50% 50% 30% 30%;
+            position: absolute;
+            bottom: 170px;
+            background-color: rgba(46, 204, 113, 0.3);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .lamp-liquid {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(to bottom, rgba(46, 204, 113, 0.8), rgba(46, 204, 113, 0.3));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .customizer-options {
+            flex: 1;
+        }
+        
+        .option-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .option-group h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-option.selected {
+            border: 2px solid var(--dark);
+            transform: scale(1.1);
+        }
+        
+        .material-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .material-option {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .material-option:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .material-option.selected {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .material-option input {
+            margin-right: 0.5rem;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .size-option {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .size-option:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .size-option.selected {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            padding: 0 1rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content, .mv-container, .customizer-container {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>BioGlow Labs</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#personalizar">Personalizar</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1 class="fade-in">“LUZ DONDE NUNCA PENSASTE QUE ERA POSIBLE” </h1>
+            <p class="fade-in delay-1">Descubre nuestras lámparas biológicas que combinan química y diseño para crear una experiencia luminosa única </p>
+            <div class="fade-in delay-2">
+                <a href="#personalizar" class="btn">Personaliza la tuya</a>
+                <a href="#productos" class="btn btn-outline">Ver productos</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre BioGlow Labs</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>En BioGlow Labs hemos revolucionado el concepto de iluminación mediante el desarrollo de sistemas de luz basados en reacciones químicas seguras . Nuestras lámparas biológicas utilizan una combinación de carbonato de sodio, luminol y otros componentes naturales para generar una luz suave y relajante.</p>
+                    <p>Este innovador enfoque  también crea un espectáculo visual fascinante, con burbujas y movimientos fluidos , pero con un toque científico y ecológico único.</p>
+                </div>
+                <div class="about-image fade-in delay-1">
+                    <img src="" alt="Lámpara BioGlow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mv-container">
+                <div class="mv-box fade-in">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Misión</h3>
+                    <p>En BioGlow Labs, nos especializamos en el desarrollo de soluciones innovadoras de iluminación basadas en reacciones químicas. Nuestro propósito es ofrecer una alternativa eficiente, sostenible y accesible para generar luz con electricidad, brindando soluciones seguras y ecológicas para diversas industrias y necesidades cotidianas.</p>
+                </div>
+                <div class="mv-box fade-in delay-1">
+                    <i class="fas fa-eye"></i>
+                    <h3>Visión</h3>
+                    <p>Ser la empresa líder en tecnología de iluminación química, revolucionando la forma en que el mundo accede a la luz. Nos enfocamos en la investigación y el desarrollo de soluciones avanzadas que promuevan la sostenibilidad y la accesibilidad en sectores como la  vida cotidiana.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="productos" class="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Productos</h2>
+            </div>
+            <div class="product-grid">
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="BioGlow Standard">
+                    </div>
+                    <div class="product-info">
+                        <h3>BioGlow Standard</h3>
+                        <p>La lámpara perfecta para comenzar tu experiencia de iluminación biológica.</p>
+                        <div class="price">$99.99</div>
+                        <a href="#personalizar" class="btn">Personalizar</a>
+                    </div>
+                </div>
+                <div class="product-card fade-in delay-1">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="BioGlow Premium">
+                    </div>
+                    <div class="product-info">
+                        <h3>BioGlow Premium</h3>
+                        <p>Mayor tamaño y duración, con materiales de alta calidad y diseño elegante.</p>
+                        <div class="price">$139.99</div>
+                        <a href="#personalizar" class="btn">Personalizar</a>
+                    </div>
+                </div>
+                <div class="product-card fade-in delay-2">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1585314062604-1a357de8b000?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="BioGlow Kit Educativo">
+                    </div>
+                    <div class="product-info">
+                        <h3>Kit Educativo</h3>
+                        <p>Todo lo necesario para crear tu propia lámpara biológica y aprender sobre las reacciones químicas.</p>
+                        <div class="price">$129.99</div>
+                        <a href="#personalizar" class="btn">Personalizar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="personalizar" class="customizer">
+        <div class="container">
+            <div class="section-title">
+                <h2>Personaliza tu BioGlow</h2>
+                <p>Crea una lámpara única que se adapte a tu estilo y necesidades</p>
+            </div>
+            <div class="customizer-container">
+                <div class="customizer-preview" id="lamp-preview">
+                    <div class="lamp-base"></div>
+                    <div class="lamp-stem"></div>
+                    <div class="lamp-bag">
+                        <div class="lamp-liquid" id="lamp-liquid">
+                            <!-- Bubbles will be added by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                <div class="customizer-options">
+                    <div class="option-group">
+                        <h3>Color de la Luz</h3>
+                        <div class="color-options">
+                            <div class="color-option selected" style="background-color: #2ecc71;" data-color="#2ecc71"></div>
+                            <div class="color-option" style="background-color: #3498db;" data-color="#3498db"></div>
+                            <div class="color-option" style="background-color: #9b59b6;" data-color="#9b59b6"></div>
+                            <div class="color-option" style="background-color: #e74c3c;" data-color="#e74c3c"></div>
+                            <div class="color-option" style="background-color: #f1c40f;" data-color="#f1c40f"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h3>Material del Recipiente</h3>
+                        <div class="material-options">
+                            <label class="material-option selected">
+                                <input type="radio" name="material" value="plastic" checked> Plástico Reciclado
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="material" value="glass"> Vidrio Templado
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="material" value="acrylic"> Acrílico Premium
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h3>Tamaño</h3>
+                        <div class="size-options">
+                            <div class="size-option selected" data-size="small">Pequeño (12cm)</div>
+                            <div class="size-option" data-size="medium">Mediano (20cm)</div>
+                            <div class="size-option" data-size="large">Grande (28cm)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h3>Kit de Reactivos</h3>
+                        <div class="material-options">
+                            <label class="material-option selected">
+                                <input type="radio" name="kit" value="basic" checked> Básico (5 reacciones)
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="kit" value="standard"> Estándar (10 reacciones)
+                            </label>
+                            <label class="material-option">
+                                <input type="radio" name="kit" value="premium"> Premium (20 reacciones + recargas)
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button class="btn add-to-cart" id="add-to-cart">Añadir al Carrito - $99.99</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BioGlow Labs</h3>
+                    <p>Innovando en iluminación sostenible mediante reacciones químicas seguras y eficientes.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#personalizar">Personalizar</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Cecyt10</li>
+                        <li><i class="fas fa-phone"></i> 5551013046</li>
+                        <li><i class="fas fa-envelope"></i> infobioglowlabs98@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BioGlow Labs. Todos los derechos reservados gsl.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create bubbles for the lamp
+            const liquid = document.getElementById('lamp-liquid');
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                bubble.style.width = `${Math.random() * 10 + 5}px`;
+                bubble.style.height = bubble.style.width;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.bottom = `${Math.random() * 20}%`;
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                bubble.style.opacity = Math.random() * 0.5 + 0.3;
+                liquid.appendChild(bubble);
+            }
+            
+            // Color selection
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const color = this.getAttribute('data-color');
+                    document.querySelector('.lamp-liquid').style.background = `linear-gradient(to bottom, ${color}80, ${color}30)`;
+                });
+            });
+            
+            // Material selection
+            const materialOptions = document.querySelectorAll('.material-option');
+            materialOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    materialOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Size selection
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    const size = this.getAttribute('data-size');
+                    
+                    // Update price based on size
+                    const priceMap = {
+                        'small': '$99.99',
+                        'medium': '$114.99',
+                        'large': '$129.99'
+                    };
+                    document.getElementById('add-to-cart').textContent = `Añadir al Carrito - ${priceMap[size]}`;
+                    
+                    // Update preview size
+                    const bag = document.querySelector('.lamp-bag');
+                    if (size === 'small') {
+                        bag.style.width = '120px';
+                        bag.style.height = '160px';
+                    } else if (size === 'medium') {
+                        bag.style.width = '150px';
+                        bag.style.height = '200px';
+                    } else {
+                        bag.style.width = '180px';
+                        bag.style.height = '240px';
+                    }
+                });
+            });
+            
+            // Add to cart
+            document.getElementById('add-to-cart').addEventListener('click', function() {
+                const selectedColor = document.querySelector('.color-option.selected').getAttribute('data-color');
+                const selectedMaterial = document.querySelector('input[name="material"]:checked').value;
+                const selectedSize = document.querySelector('.size-option.selected').getAttribute('data-size');
+                const selectedKit = document.querySelector('input[name="kit"]:checked').value;
+                
+                alert(`¡Producto añadido al carrito!\n\nConfiguración:\n- Color: ${selectedColor}\n- Material: ${selectedMaterial}\n- Tamaño: ${selectedSize}\n- Kit: ${selectedKit}`);
+            });
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Animation on scroll
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
